@@ -1,0 +1,61 @@
+---
+- hosts: testservers
+  tasks:
+  
+  - name: printing Ip address
+    debug:
+      msg: "my system ip adress is {{ ansible_default_ipv4.address }}"
+
+
+
+
+
+
+---
+- hosts: testservers
+  tasks:
+  - name: executing sample command
+    command: echo -e "This is the first line, \n This is second line"
+    register: result
+
+  - name: printing variable
+    debug:
+      var: result
+
+
+
+
+---
+- hosts: testservers
+  tasks:
+  - name: executing sample command
+    command: echo -e "This is the first line, \n This is second line"
+    register: result
+
+  - name: printing variable
+    debug:
+      var: result
+
+  - name: printing variable with stdout
+    debug:
+      var: result.stdout
+
+  - name: printing variable with stdout.lines
+    debug:
+      msg: "{{result.stdout_lines}}"
+
+
+
+---
+- hosts: testservers
+  tasks:
+  - name: executing sample command
+    shell: uptime
+    register: result
+
+  - name: printing variable
+    debug:
+      msg: "{{result}}"
+
+
+
